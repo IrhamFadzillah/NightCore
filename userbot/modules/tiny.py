@@ -2,7 +2,6 @@
 # by port = @manusiarakitan
 
 
-import cv2
 import os
 from userbot.events import register
 from userbot import CMD_HELP, bot
