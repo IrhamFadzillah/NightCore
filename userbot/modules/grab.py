@@ -5,7 +5,6 @@ import bs4
 import os
 import asyncio
 import time
-from justwatch import JustWatch
 from telethon import *
 from userbot.events import register
 from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME
