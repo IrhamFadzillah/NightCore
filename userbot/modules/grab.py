@@ -121,10 +121,8 @@ async def potocmd(event):
             return
 
 
-CMD_HELP.update({
-    "grab":
-    "`.grab`\
-    
-\n\n`.grab` <count>\
-\nUsage:replay .grab or .grab <count> to grab profile picture."
+CMD_HELP.update(
+    {
+    "grab": "`.grab`\
+    \nUsage:replay .grab or .grab <count> to grab profile picture."
 })
