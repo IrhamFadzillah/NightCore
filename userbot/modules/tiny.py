@@ -2,11 +2,13 @@
 # by port = @manusiarakitan
 
 
-import cv2
 import os
-from userbot.events import register
-from userbot import CMD_HELP, bot
+
+import cv2
 from PIL import Image
+
+from userbot import CMD_HELP, bot
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.tiny(?: |$)(.*)", disable_errors=True)
@@ -81,8 +83,10 @@ async def ultiny(event):
     os.remove(file)
     os.remove(ik)
 
+
 CMD_HELP.update(
     {
         "tiny": ".tiny\
     \nMemperkecil Ukuran Stiker."
-    })
+    }
+)
