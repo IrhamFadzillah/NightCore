@@ -56,3 +56,4 @@ python-dateutil
 validators
 scipy
 wordcloud
+opencv-python
