@@ -4,7 +4,6 @@
 
 import os
 
-import cv2
 from PIL import Image
 
 from userbot import CMD_HELP, bot
