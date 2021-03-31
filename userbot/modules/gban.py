@@ -54,11 +54,11 @@ async def gben(userbot):
     sender = await dc.get_sender()
     me = await dc.client.get_me()
     if not sender.id == me.id:
-        dark = await dc.reply("`*It's global banned time*`")
+        dark = await dc.reply("`It's global banned time`")
     else:
-        dark = await dc.edit("`*It's global banned time*`")
+        dark = await dc.edit("`It's global banned time`")
     me = await userbot.client.get_me()
-    await dark.edit(f"`*It's global banned time*`")
+    await dark.edit(f"`It's global banned time`")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -110,7 +110,7 @@ async def gben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"`Person has been gbanned.'")
+        f"`Person has been gbanned.'"
     )
 
 
