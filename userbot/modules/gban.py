@@ -1,3 +1,10 @@
+"""
+credits to @mrconfused
+dont edit credits
+"""
+#  Copyright (C) 2020  sandeep.n(π.$)
+
+
 import asyncio
 
 from telethon.errors import BadRequestError
@@ -5,7 +12,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import Channel, ChatBannedRights
 
 import userbot.modules.sql_helper.gban_sql_helper as gban_sql
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 
@@ -37,7 +44,7 @@ UNBAN_RIGHTS = ChatBannedRights(
 async def global_ban(event):
     if event.fwd_from:
         return
-    await event.edit("`*It's global banned time* `")
+    await event.edit("`*It's global banned time*`")
     start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
@@ -183,12 +190,4 @@ async def gablist(event):
     else:
         await event.edit(GBANNED_LIST)
 
-        
-  CMD_HELP.update(
-  {
-  "gban": "\
-`.gban` <username/reply/userid> <reason (optional)>\
-\nUsage: Bans the person in all groups where you are admin.\
-\n\n`.ungban` <username/reply/userid>\
-\nUsage: Reply someone's message with .ungban to remove them from the gbanned list."
-})      
+  
