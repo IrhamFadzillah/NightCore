@@ -54,11 +54,11 @@ async def gben(userbot):
     sender = await dc.get_sender()
     me = await dc.client.get_me()
     if not sender.id == me.id:
-        dark = await dc.reply("`*It's global banned time* `")
+        dark = await dc.reply("`*It's global banned time*`")
     else:
-        dark = await dc.edit("`*It's global banned time* `")
+        dark = await dc.edit("`*It's global banned time*`")
     me = await userbot.client.get_me()
-    await dark.edit(f"`*It's global banned time* `")
+    await dark.edit(f"`*It's global banned time*`")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -80,7 +80,7 @@ async def gben(userbot):
     if user:
         if user.id == 950149480:
             return await dark.edit(
-                f"`I spy, with my little eye... a sudo user war! Why are you guys turning on each other? 😱`"
+                f"`I spy, with my little eye... a sudo user war! Why are you guys turning on each other?`"
             )
         try:
             from userbot.modules.sql_helper.gmute_sql import gmute
@@ -99,7 +99,7 @@ async def gben(userbot):
             try:
                 await userbot.client.edit_permissions(i, user, view_messages=False)
                 a += 1
-                await dark.edit(f"`*It's global banned time* `")
+                await dark.edit(f"`*It's global banned time*`")
             except BaseException:
                 b += 1
     else:
@@ -110,7 +110,7 @@ async def gben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"`Person has been gbanned. ')
+        f"`Person has been gbanned.'")
     )
 
 
@@ -145,7 +145,7 @@ async def gunben(userbot):
         return await dark.edit("`there is an error`")
     if user:
         if user.id == 950149480:
-            return await dark.edit("I spy, with my little eye... a sudo user war! Why are you guys turning on each other? ")
+            return await dark.edit("I spy, with my little eye... a sudo user war! Why are you guys turning on each other?")
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
         except BaseException:
