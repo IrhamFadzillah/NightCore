@@ -38,7 +38,7 @@ UNBAN_RIGHTS = ChatBannedRights(
 async def global_ban(event):
     if event.fwd_from:
         return
-    await event.edit("`Initiate Global Ban...`")
+    await event.edit("`*It's global banned time* 😉`")
     start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
@@ -68,7 +68,7 @@ async def global_ban(event):
             "`You need to be at least admin in 1 group to gban someone!`"
         )
     await event.edit(
-        f"Initiating Global Ban to [{user.first_name}](tg://user?id={user.id}) in `{len(groups_admin)}` groups"
+        f"Person has been gbanned. 😉"
     )
     for i in range(len(groups_admin)):
         try:
@@ -112,7 +112,7 @@ async def global_ban(event):
 async def unglobal_ban(event):
     if event.fwd_from:
         return
-    await event.edit("ungbaning.....")
+    await event.edit("I'll give . a second chance, globally.")
     start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
@@ -141,7 +141,7 @@ async def unglobal_ban(event):
             "`You need to be at least admin in 1 group to gban someone!`"
         )
     await event.edit(
-        f"initiating ungban of the [{user.first_name}](tg://user?id={user.id}) in `{len(groups_admin)}` groups"
+        f"Person has been un-gbanned."
     )
     for i in range(len(groups_admin)):
         try:
