@@ -99,7 +99,7 @@ async def global_ban(event):
         await event.client.send_message(
             BOTLOG_CHATID,
             f"#GBAN\nGlobal BAN\nUser: [{user.first_name}](tg://user?id={user.id})\nID: `{user.id}`\
-                                                \nReason: `{reason}`\nBanned in `{count}` groups\nTime taken = `{time_taken}` seconds",
+                                                \nReason: `{reason}`",
         )
 
 
@@ -107,7 +107,7 @@ async def global_ban(event):
 async def unglobal_ban(event):
     if event.fwd_from:
         return
-    await event.edit("ungbaning.....")
+    await event.edit("I'll give . a second chance")
     user, reason = await get_user_from_event(event)
     if not user:
         return
@@ -135,7 +135,7 @@ async def unglobal_ban(event):
             "`You need to be at least admin in 1 group to gban someone!`"
         )
     await event.edit(
-        f"I'll give . a second chance, globally:\nUser: [{user.first_name}](tg://user?id={user.id})\n Action: UNGBANNED\n Reason: `{reason}`"
+        f"Person has been un-gbanned,:\n User: [{user.first_name}](tg://user?id={user.id})\n Action: UNGBANNED\n Reason: `{reason}`"
     )
     for i in range(len(groups_admin)):
         try:
@@ -153,7 +153,7 @@ async def unglobal_ban(event):
         await event.client.send_message(
             BOTLOG_CHATID,
             f"#UNGBAN\nGlobal UNBAN\nUser: [{user.first_name}](tg://user?id={user.id})\nID: {user.id}\
-                                                \nReason: `{reason}`\nUnbanned in `{count}` groups\nTime taken = `{time_taken}` seconds",
+                                                \nReason: `{reason}`",
         )
 
 
