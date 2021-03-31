@@ -184,8 +184,9 @@ async def gablist(event):
         await event.edit(GBANNED_LIST)
 
         
-  CMD_HELP.update({
-    "gban": "\
+  CMD_HELP.update(
+  {
+  "gban": "\
 `.gban` <username/reply/userid> <reason (optional)>\
 \nUsage: Bans the person in all groups where you are admin.\
 \n\n`.ungban` <username/reply/userid>\
