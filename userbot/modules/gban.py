@@ -45,7 +45,6 @@ async def global_ban(event):
     if event.fwd_from:
         return
     await event.edit("`*It's global banned time*`")
-    start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
         return
@@ -109,7 +108,6 @@ async def unglobal_ban(event):
     if event.fwd_from:
         return
     await event.edit("ungbaning.....")
-    start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
         return
