@@ -173,6 +173,5 @@ async def gablist(event):
                 )
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
-    await edit_or_reply(event, GBANNED_LIST)
 
   
