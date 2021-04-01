@@ -160,24 +160,3 @@ async def unglobal_ban(event):
                                                 \nReason: `{reason}`",
         )
 
-
-@register(outgoing=True, pattern=r"^\.listgban$")
-async def gablist(event):
-    if event.fwd_from:
-        return
-    gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "Current Gbanned Users\n"
-    if len(gbanned_users) > 0:
-        for a_user in gbanned_users:
-            if a_user.reason:
-                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
-            else:
-                GBANNED_LIST += (
-                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
-                )
-    else:
-        GBANNED_LIST = "no Gbanned Users (yet)"
-          await edit_or_reply(event, GBANNED_LIST)
-    
-
-  
