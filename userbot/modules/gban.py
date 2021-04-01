@@ -157,8 +157,8 @@ async def unglobal_ban(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.glist$")
-async def glist(event):
+@register(outgoing=True, pattern=r"^\.listgban$")
+async def gablist(event):
     if event.fwd_from:
         return
     gbanned_users = gban_sql.get_all_gbanned()
@@ -173,6 +173,6 @@ async def glist(event):
                 )
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
-        await event.edit(GBANNED_LIST)
+    await edit_or_reply(event, GBANNED_LIST)
 
   
