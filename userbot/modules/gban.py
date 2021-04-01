@@ -53,16 +53,9 @@ async def global_ban(event):
         return await event.edit("`Why would you gban yourself?`")
     if gban_sql.is_gbanned(user.id):
         await event.edit(
-        "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
-            f"**Reason For GBan:** `{found['reason']}`")
-        
-    else:
-        gban_sql.catgban(user.id, reason)
-
-    count = 0
-    groups_admin = []
-    async for dialog in event.client.iter_dialogs():
-        entity = dialog.entity
+            "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
+            f"**Reason For GBan:** `{reason}`")
+            
         if (
             isinstance(entity, Channel)
             and entity.megagroup
