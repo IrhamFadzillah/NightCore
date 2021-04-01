@@ -158,7 +158,7 @@ async def unglobal_ban(event):
 
 
 @register(outgoing=True, pattern=r"^\.glist$")
-async def gablist(event):
+async def glist(event):
     if event.fwd_from:
         return
     gbanned_users = gban_sql.get_all_gbanned()
