@@ -6,6 +6,8 @@ dont edit credits
 
 
 import asyncio
+import aiofiles
+import aiohttp
 
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
@@ -72,9 +74,11 @@ async def global_ban(event):
         return await event.edit(
             "`You need to be at least admin in 1 group to gban someone!`"
         )
-    await event.edit(
-        f"Person has been gbanned:\n User: [{user.first_name}](tg://user?id={user.id})\n Action: Globally Banned\n Reason: `{reason}`"
-    )
+    await event.edit(r"\\**#GBanned_User**//"
+                       f"\n\n**First Name:** [{firstname}](tg://user?id={user_id})\n"
+                       f"**User ID:** `{user_id}`\n**Reason:** `{reason}`")
+
+    
     for i in range(len(groups_admin)):
         try:
             await event.client(EditBannedRequest(groups_admin[i], user.id, BANNED_RIGHTS))
@@ -134,9 +138,10 @@ async def unglobal_ban(event):
         return await event.edit(
             "`You need to be at least admin in 1 group to gban someone!`"
         )
-    await event.edit(
-        f"Person has been un-gbanned,:\n User: [{user.first_name}](tg://user?id={user.id})\n Action: UNGBANNED\n Reason: `{reason}`"
-    )
+    await event.edit(r"\\**#UnGbanned_User**//"
+                       f"\n\n**First Name:** [{firstname}](tg://user?id={user_id})\n"
+                       f"**User ID:** `{user_id}`")
+       
     for i in range(len(groups_admin)):
         try:
             await event.client(EditBannedRequest(groups_admin[i], user.id, UNBAN_RIGHTS))
@@ -173,5 +178,20 @@ async def gablist(event):
                 )
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
+    if len(GBANNED_LIST) > 4095:
+        with io.BytesIO(str.encode(GBANNED_LIST)) as out_file:
+            out_file.name = "Gbannedusers.text"
+            await event.client.send_file(
+                event.chat_id,
+                out_file,
+                force_document=True,
+                allow_cache=False,
+                caption="Current Gbanned Users",
+                reply_to=event,
+            )
+            await event.delete()
+    else:
+        await edit_or_reply(event, GBANNED_LIST)
+    
 
   
