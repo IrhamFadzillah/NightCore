@@ -75,8 +75,8 @@ async def global_ban(event):
             "`You need to be at least admin in 1 group to gban someone!`"
         )
     await event.edit(r"\\**#GBanned_User**//"
-                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user_id})\n"
-                       f"**User ID:** `{user_id}`\n**Reason:** `{reason}`")
+                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
+                       f"**User ID:** `{user.id}`\n**Reason:** `{reason}`")
 
     
     for i in range(len(groups_admin)):
@@ -139,8 +139,8 @@ async def unglobal_ban(event):
             "`You need to be at least admin in 1 group to gban someone!`"
         )
     await event.edit(r"\\**#UnGbanned_User**//"
-                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user_id})\n"
-                       f"**User ID:** `{user_id}`")
+                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
+                       f"**User ID:** `{user.id}`")
        
     for i in range(len(groups_admin)):
         try:
