@@ -52,7 +52,7 @@ async def global_ban(event):
     if user.id == (await event.client.get_me()).id:
         return await event.edit("`Why would you gban yourself?`")
     if gban_sql.is_gbanned(user.id):
-        await e.edit(
+        await event.edit(
             "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
             f"**Reason For GBan:** `{reason}`")
 
