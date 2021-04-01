@@ -54,8 +54,8 @@ async def global_ban(event):
     if gban_sql.is_gbanned(user.id):
         await event.edit(
             "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
-            f"**Reason For GBan:** `{reason}`")
-
+            f"**Reason For GBan:** `{reason}`"
+          )
         else:
         gban_sql.catgban(user.id, reason)
 
