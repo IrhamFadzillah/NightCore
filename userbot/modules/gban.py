@@ -45,7 +45,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 async def global_ban(event):
     if event.fwd_from:
         return
-    await event.edit("`*It's global banned time*`")
+    await event.edit("`*It's global banned time* `")
+    start = datetime.now()
     user, reason = await get_user_from_event(event)
     if not user:
         return
@@ -55,8 +56,8 @@ async def global_ban(event):
         await event.edit(
             "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
             f"**Reason For GBan:** `{reason}`"
-          )
-        else:
+        )
+    else:
         gban_sql.catgban(user.id, reason)
 
     count = 0
