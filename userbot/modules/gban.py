@@ -52,10 +52,17 @@ async def global_ban(event):
     if user.id == (await event.client.get_me()).id:
         return await event.edit("`Why would you gban yourself?`")
     if gban_sql.is_gbanned(user.id):
-        await event.edit(
+        await e.edit(
             "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
             f"**Reason For GBan:** `{reason}`")
-            
+
+        else:
+        gban_sql.catgban(user.id, reason)
+
+    count = 0
+    groups_admin = []
+    async for dialog in event.client.iter_dialogs():
+        entity = dialog.entity
         if (
             isinstance(entity, Channel)
             and entity.megagroup
@@ -160,8 +167,25 @@ async def gablist(event):
         return
     gbanned_users = gban_sql.get_all_gbanned()
     GBANNED_LIST = "Current Gbanned Users\n"
+    if len(gbanned_users)@register(outgoing=True, pattern=r"^\.$")
+async def gablist(event):
+    if event.fwd_from:
+        return
+    gbanned_users = gban_sql.get_all_gbanned()
+    GBANNED_LIST = "Current Gbanned Users\n"
     if len(gbanned_users) > 0:
         for a_user in gbanned_users:
+            if a_user.reason:
+                GBANNED_LIST += f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
+            else:
+                GBANNED_LIST += (
+                    f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
+                )
+    else:
+        GBANNED_LIST = "no Gbanned Users (yet)"
+        await event.edit(GBANNED_LIST)
+ > 0:
+        for a_user in gbanned_usglisters:
             if a_user.reason:
                 GBANNED_LIST += f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
             else:
