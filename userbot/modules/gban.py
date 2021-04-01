@@ -6,7 +6,6 @@ dont edit credits
 
 
 import asyncio
-import aiofiles
 import aiohttp
 
 from telethon.errors import BadRequestError
@@ -53,9 +52,10 @@ async def global_ban(event):
     if user.id == (await event.client.get_me()).id:
         return await event.edit("`Why would you gban yourself?`")
     if gban_sql.is_gbanned(user.id):
-        await event.edit(
-            f"the [user](tg://user?id={user.id}) is already in gbanned list any way checking again"
-        )
+        await message.edit(
+            "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
+            f"**Reason For GBan:** `{found['reason']}`")
+        
     else:
         gban_sql.catgban(user.id, reason)
 
@@ -178,20 +178,7 @@ async def gablist(event):
                 )
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
-    if len(GBANNED_LIST) > 4095:
-        with io.BytesIO(str.encode(GBANNED_LIST)) as out_file:
-            out_file.name = "Gbannedusers.text"
-            await event.client.send_file(
-                event.chat_id,
-                out_file,
-                force_document=True,
-                allow_cache=False,
-                caption="Current Gbanned Users",
-                reply_to=event,
-            )
-            await event.delete()
-    else:
-        await edit_or_reply(event, GBANNED_LIST)
+          await edit_or_reply(event, GBANNED_LIST)
     
 
   
