@@ -6,7 +6,6 @@ dont edit credits
 
 
 import asyncio
-import aiohttp
 
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
@@ -74,14 +73,17 @@ async def global_ban(event):
         return await event.edit(
             "`You need to be at least admin in 1 group to gban someone!`"
         )
-    await event.edit(r"\\**#GBanned_User**//"
-                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
-                       f"**User ID:** `{user.id}`\n**Reason:** `{reason}`")
+    await event.edit(
+        r"\\**#GBanned_User**//"
+        f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
+        f"**User ID:** `{user.id}`\n**Reason:** `{reason}`"
+    )
 
-    
     for i in range(len(groups_admin)):
         try:
-            await event.client(EditBannedRequest(groups_admin[i], user.id, BANNED_RIGHTS))
+            await event.client(
+                EditBannedRequest(groups_admin[i], user.id, BANNED_RIGHTS)
+            )
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -97,7 +99,6 @@ async def global_ban(event):
         await event.edit(
             "`I dont have message deleting rights here! But still he was gbanned!`"
         )
-    
 
     if BOTLOG and count != 0:
         await event.client.send_message(
@@ -138,13 +139,17 @@ async def unglobal_ban(event):
         return await event.edit(
             "`You need to be at least admin in 1 group to gban someone!`"
         )
-    await event.edit(r"\\**#UnGbanned_User**//"
-                       f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
-                       f"**User ID:** `{user.id}`")
-       
+    await event.edit(
+        r"\\**#UnGbanned_User**//"
+        f"\n\n**First Name:** [{user.first_name}](tg://user?id={user.id})\n"
+        f"**User ID:** `{user.id}`"
+    )
+
     for i in range(len(groups_admin)):
         try:
-            await event.client(EditBannedRequest(groups_admin[i], user.id, UNBAN_RIGHTS))
+            await event.client(
+                EditBannedRequest(groups_admin[i], user.id, UNBAN_RIGHTS)
+            )
             await asyncio.sleep(0.5)
             count += 1
         except BadRequestError:
@@ -153,13 +158,14 @@ async def unglobal_ban(event):
                 f"You don't have required permission in :\nCHAT: {event.chat.title}(`{event.chat_id}`)\nFor unbaning here",
             )
 
-
     if BOTLOG and count != 0:
         await event.client.send_message(
             BOTLOG_CHATID,
             f"#UNGBAN\nGlobal UNBAN\nUser: [{user.first_name}](tg://user?id={user.id})\nID: {user.id}\
                                                 \nReason: `{reason}`",
         )
+
+
 @register(outgoing=True, pattern=r"^\.listgban$")
 async def gablist(event):
     if event.fwd_from:
@@ -171,9 +177,7 @@ async def gablist(event):
             if a_user.reason:
                 GBANNED_LIST += f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
             else:
-                GBANNED_LIST += (
-                    f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
-                )
+                GBANNED_LIST += f"ðŸ‘‰ [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
     else:
         GBANNED_LIST = "no Gbanned Users (yet)"
         await event.edit(GBANNED_LIST)
